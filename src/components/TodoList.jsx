@@ -10,11 +10,13 @@ export default function TodoList({ tasks, setTasks }) {
   };
 
   const toggleComplete = (index) => {
-    setTasks(
-      tasks.map((t, i) =>
-        i === index ? { ...t, completed: !t.completed } : t
-      )
-    );
+    if (editIndex !== index) {
+      setTasks(
+        tasks.map((t, i) =>
+          i === index ? { ...t, completed: !t.completed } : t
+        )
+      );
+    }
   };
 
   const startEdit = (index, text) => {
@@ -35,6 +37,10 @@ export default function TodoList({ tasks, setTasks }) {
     return true;
   });
 
+  const stopPropagation = (e) => {
+    e.stopPropagation();
+  };
+
   return (
     <div className="task-container">
       <div className="filters">
@@ -45,12 +51,11 @@ export default function TodoList({ tasks, setTasks }) {
 
       <ul>
         {filteredTasks.map((t, index) => (
-          <li key={index} className={t.completed ? "completed" : ""}>
-            <input
-              type="checkbox"
-              checked={t.completed}
-              onChange={() => toggleComplete(index)}
-            />
+          <li
+            key={index}
+            className={t.completed ? "completed" : ""}
+            onClick={() => toggleComplete(index)} 
+          >
             {editIndex === index ? (
               <input
                 type="text"
@@ -61,12 +66,37 @@ export default function TodoList({ tasks, setTasks }) {
               <span>{t.text}</span>
             )}
 
-            {editIndex === index ? (
-              <button onClick={saveEdit}>Save</button>
-            ) : (
-              <button onClick={() => startEdit(index, t.text)}>Edit</button>
-            )}
-            <button onClick={() => removeTask(index)}>❌</button>
+            { }
+            <div className="task-buttons">
+              {editIndex === index ? (
+                <button
+                  onClick={(e) => {
+                    stopPropagation(e); 
+                    saveEdit();
+                  }}
+                >
+                  Save
+                </button>
+              ) : (
+                <button
+                  onClick={(e) => {
+                    stopPropagation(e); 
+                    startEdit(index, t.text);
+                  }}
+                >
+                  Edit
+                </button>
+              )}
+
+              <button
+                onClick={(e) => {
+                  stopPropagation(e); 
+                  removeTask(index);
+                }}
+              >
+                ❌
+              </button>
+            </div>
           </li>
         ))}
       </ul>

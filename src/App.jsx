@@ -22,7 +22,9 @@ function App() {
 
   return (
     <div className="app-container">
-      <div className={`sidebar ${tasks.length === 0 ? "centered" : ""}`}>
+      <div
+        className={`sidebar ${tasks.length === 0 ? "centered" : "with-tasks"}`}
+      >
         <h1>Olandria's TODO App</h1>
         <button className="dark-mode-toggle" onClick={() => setDarkMode(!darkMode)}>
           {darkMode ? "☀️ Light Mode" : "🌙 Dark Mode"}
@@ -40,7 +42,7 @@ function App() {
       {tasks.length > 0 ? (
         <TodoList tasks={tasks} setTasks={setTasks} />
       ) : (
-        <p style={{ textAlign: "center", width: "100%" }}>No tasks yet.</p>
+        <p style={{ textAlign: "right", width: "0%" }}></p>
       )}
     </div>
   );
