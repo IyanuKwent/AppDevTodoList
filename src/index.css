@@ -28,14 +28,14 @@ body.light-mode {
 
 /* Main Container */
 .app-container {
-  display: flex;
-  width: 100%;
+  width: 100vw;
   height: 100vh;
+  display: flex;
 }
 
 /* Sidebar (Left Panel) */
 .sidebar {
-  width: 70%;
+  width: 30%;
   padding: 30px;
   display: flex;
   flex-direction: column;
@@ -45,12 +45,10 @@ body.light-mode {
   transition: background 0.4s ease-in-out;
 }
 
-/* Dark Mode Sidebar */
 body.dark-mode .sidebar {
   background: rgba(25, 35, 50, 0.9);
 }
 
-/* Light Mode Sidebar */
 body.light-mode .sidebar {
   background: rgba(255, 255, 255, 0.8);
 }
@@ -67,18 +65,17 @@ input {
   padding: 12px;
   margin: 10px 0;
   border-radius: 6px;
+  right: 0;
   border: none;
   outline: none;
   transition: background 0.4s ease-in-out;
 }
 
-/* Dark Mode Input */
 body.dark-mode input {
   background: rgba(255, 255, 255, 0.2);
   color: white;
 }
 
-/* Light Mode Input */
 body.light-mode input {
   background: rgba(0, 0, 0, 0.1);
   color: black;
@@ -92,15 +89,13 @@ button {
   border: none;
   cursor: pointer;
   transition: 0.3s;
-  margin-top: 10px;
+  margin-top: 5px;
 }
 
-/* Add Task Button */
 .add-task {
   transition: background 0.4s ease-in-out;
 }
 
-/* Dark Mode Button */
 body.dark-mode .add-task {
   background: #1d4ed8;
   color: white;
@@ -110,7 +105,6 @@ body.dark-mode .add-task:hover {
   background: #1e40af;
 }
 
-/* Light Mode Button */
 body.light-mode .add-task {
   background: #90caf9;
   color: black;
@@ -125,7 +119,6 @@ body.light-mode .add-task:hover {
   transition: background 0.4s ease-in-out;
 }
 
-/* Dark Mode */
 body.dark-mode .dark-mode-toggle {
   background: #2563eb;
   color: white;
@@ -135,7 +128,6 @@ body.dark-mode .dark-mode-toggle:hover {
   background: #1e40af;
 }
 
-/* Light Mode */
 body.light-mode .dark-mode-toggle {
   background: #64b5f6;
   color: black;
@@ -172,13 +164,11 @@ body.light-mode .dark-mode-toggle:hover {
   justify-content: flex-start;
 }
 
-/* Dark Mode Task List */
 body.dark-mode .task-list-wrapper {
   background: rgba(255, 255, 255, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-/* Light Mode Task List */
 body.light-mode .task-list-wrapper {
   background: rgba(255, 255, 255, 0.9);
   border: 1px solid rgba(0, 0, 0, 0.1);
@@ -191,7 +181,6 @@ body.light-mode .task-list-wrapper {
   margin-bottom: 20px;
 }
 
-/* Dark Mode Filters */
 body.dark-mode .filters button {
   background: rgba(255, 255, 255, 0.2);
 }
@@ -200,7 +189,6 @@ body.dark-mode .filters button:hover {
   background: rgba(255, 255, 255, 0.3);
 }
 
-/* Light Mode Filters */
 body.light-mode .filters button {
   background: rgba(0, 0, 0, 0.1);
 }
@@ -222,17 +210,19 @@ ul {
 /* Task Items */
 li {
   width: 100%;
-  padding: 15px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 18px;
+  margin: 10px 0;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
   display: flex;
-  align-items: center;
+  align-items: stretch;
   justify-content: space-between;
-  transition: 0.3s;
+  transition: 0.3s ease-in-out;
 }
 
-/* Dark Mode Task */
 body.dark-mode li {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.05);
   color: white;
 }
 
@@ -240,9 +230,9 @@ body.dark-mode li:hover {
   background: rgba(255, 255, 255, 0.1);
 }
 
-/* Light Mode Task */
 body.light-mode li {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.9);
   color: black;
 }
 
@@ -254,4 +244,123 @@ body.light-mode li:hover {
 .completed {
   text-decoration: line-through;
   opacity: 0.6;
+}
+
+/* General Button Styles */
+.task-container button {
+  width: auto;
+  padding: 12px 20px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  transition: all 0.3s ease-in-out;
+}
+
+body.dark-mode .task-container button {
+  background: #2563eb;
+  color: white;
+}
+
+body.dark-mode .task-container button:hover {
+  background: #1e40af;
+}
+
+body.dark-mode .task-container button:active {
+  background: #1c3aa9;
+  transform: scale(0.98);
+}
+
+body.light-mode .task-container button {
+  background: #90caf9;
+  color: black;
+}
+
+body.light-mode .task-container button:hover {
+  background: #64b5f6;
+}
+
+body.light-mode .task-container button:active {
+  background: #42a5f5;
+  transform: scale(0.98);
+}
+
+/* Task Text */
+li span {
+  margin-right: 200px;
+  font-size: 50px;
+  font-weight: 500;
+  flex-grow: 1;
+  transition: color 0.3s ease-in-out;
+}
+
+body.dark-mode li span {
+  color: #e2e8f0;
+}
+
+body.dark-mode li:hover span {
+  color: #f8fafc;
+}
+
+body.light-mode li span {
+  color: #1e293b;
+}
+
+body.light-mode li:hover span {
+  color: #0f172a;
+}
+
+/* Completed Task Text */
+.completed span {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+/* Task Buttons */
+.task-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+/* General Button Styling */
+.task-buttons button {
+  padding: 8px 12px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  margin-right: 10px;
+}
+
+/* Edit Button */
+.edit-task {
+  background: #facc15;
+  color: black;
+}
+
+.edit-task:hover {
+  background: #eab308;
+}
+
+/* Save Button */
+.save-task {
+  background: #22c55e;
+  color: white;
+}
+
+.save-task:hover {
+  background: #16a34a;
+}
+
+/* Delete (X) Button */
+.delete-task {
+  background: #ef4444;
+  color: white;
+}
+
+.delete-task:hover {
+  background: #dc2626;
 }

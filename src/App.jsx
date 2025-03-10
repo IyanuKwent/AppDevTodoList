@@ -7,7 +7,7 @@ function App() {
   );
 
   const [task, setTask] = useState("");
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState([]); // Ensure tasks is an array
 
   useEffect(() => {
     document.body.className = darkMode ? "dark-mode" : "light-mode";
@@ -22,8 +22,8 @@ function App() {
 
   return (
     <div className="app-container">
-      <div className="sidebar">
-        <h1>React TODO App</h1>
+      <div className={`sidebar ${tasks.length === 0 ? "centered" : ""}`}>
+        <h1>Olandria's TODO App</h1>
         <button className="dark-mode-toggle" onClick={() => setDarkMode(!darkMode)}>
           {darkMode ? "☀️ Light Mode" : "🌙 Dark Mode"}
         </button>
@@ -37,7 +37,11 @@ function App() {
         <button className="add-task" onClick={addTask}>Add Task</button>
       </div>
 
-      <TodoList tasks={tasks} setTasks={setTasks} />
+      {tasks.length > 0 ? (
+        <TodoList tasks={tasks} setTasks={setTasks} />
+      ) : (
+        <p style={{ textAlign: "center", width: "100%" }}>No tasks yet.</p>
+      )}
     </div>
   );
 }
